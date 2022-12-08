@@ -35,11 +35,21 @@ ADD COLUMN owner_id INT CONSTRAINT owners_animals_fk
 REFERENCES owners(id) 
 ON DELETE CASCADE;
 
+/*Vets*/
+CREATE TABLE vets(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    date_of_graduation DATE
+)
+
+/*Specialisations*/
 CREATE TABLE specializations(
     species_id INT REFERENCES species(id) ON DELETE CASCADE,
     vet_id INT REFERENCES vets(id) ON DELETE CASCADE
 );
 
+/*Visits*/
 CREATE TABLE visits(
     animal_id INT REFERENCES animals(id) ON DELETE CASCADE,
     vet_id INT REFERENCES vets(id) ON DELETE CASCADE,
