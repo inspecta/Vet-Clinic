@@ -28,9 +28,30 @@ CREATE TABLE species(
 ALTER TABLE animals 
 ADD COLUMN species_id INT CONSTRAINT species_animals_fk 
 REFERENCES species(id)
-ON UPDATE CASCADE ON DELETE CASCADE;
+ON DELETE CASCADE;
 
 ALTER TABLE animals 
 ADD COLUMN owner_id INT CONSTRAINT owners_animals_fk 
 REFERENCES owners(id) 
-ON UPDATE CASCADE ON DELETE CASCADE;
+ON DELETE CASCADE;
+
+/*Vets*/
+CREATE TABLE vets(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    date_of_graduation DATE
+)
+
+/*Specialisations*/
+CREATE TABLE specializations(
+    species_id INT REFERENCES species(id) ON DELETE CASCADE,
+    vet_id INT REFERENCES vets(id) ON DELETE CASCADE
+);
+
+/*Visits*/
+CREATE TABLE visits(
+    animal_id INT REFERENCES animals(id) ON DELETE CASCADE,
+    vet_id INT REFERENCES vets(id) ON DELETE CASCADE,
+    visit_date DATE
+);
