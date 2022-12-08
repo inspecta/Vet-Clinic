@@ -55,35 +55,36 @@ UPDATE animals
 SET owner_id = (SELECT id from owners WHERE full_name = 'Dean Winchester')
 WHERE name = 'Angemon'  OR name = 'Boarmon';
 
+/* Vets*/
+INSERT INTO vets(name, age, date_of_graduation) VALUES(
+'William Tatcher', 45, '23/04/2000');
 
-vet_clinic=# INSERT INTO vets(name, age, date_of_graduation) VALUES(
-vet_clinic(# 'William Tatcher', 45, '23/04/2000');
-INSERT 0 1
-vet_clinic=# INSERT INTO vets(name, age, date_of_graduation) VALUES(
+INSERT INTO vets(name, age, date_of_graduation) VALUES(
 'Maisy Smith', 26, '17/01/2019');
-INSERT 0 1
-vet_clinic=# INSERT INTO vets(name, age, date_of_graduation) VALUES(
+
+INSERT INTO vets(name, age, date_of_graduation) VALUES(
 'Stephaine Mendez', 64, '04/05/1981');
-INSERT 0 1
-vet_clinic=# INSERT INTO vets(name, age, date_of_graduation) VALUES(
+
+INSERT INTO vets(name, age, date_of_graduation) VALUES(
 'Jack Harkness', 38, '08/06/2008');
-INSERT 0 1
 
 /* Specialisations */
 
-vet_clinic=# INSERT INTO specializations (species_id, vet_id) VALUES( 
-(SELECT id FROM species WHERE name = 'Pokemon'),
-(SELECT id FROM vets WHERE name = 'William Tatcher'));
-INSERT 0 1
-vet_clinic=# INSERT INTO specializations (species_id, vet_id) VALUES( 
-(SELECT id FROM species WHERE name = 'Digimon'),
-(SELECT id FROM vets WHERE name = 'Stephaine Mendez'));
-INSERT 0 1
-vet_clinic=# INSERT INTO specializations (species_id, vet_id) VALUES( 
-(SELECT id FROM species WHERE name = 'Digimon'),
-(SELECT id FROM vets WHERE name = 'Jack Harkness'));
-INSERT 0 1
-vet_clinic=# 
+INSERT INTO specializations (species_id, vet_id) VALUES( 
+  (SELECT id FROM species WHERE name = 'Pokemon'),
+  (SELECT id FROM vets WHERE name = 'William Tatcher')
+);
+
+INSERT INTO specializations (species_id, vet_id) VALUES( 
+  (SELECT id FROM species WHERE name = 'Digimon'),
+  (SELECT id FROM vets WHERE name = 'Stephaine Mendez')
+);
+
+INSERT INTO specializations (species_id, vet_id) VALUES( 
+  (SELECT id FROM species WHERE name = 'Digimon'),
+  (SELECT id FROM vets WHERE name = 'Jack Harkness')
+);
+
 
 /*Visits*/
 INSERT INTO visits (animal_id, vet_id, visit_date)
