@@ -81,12 +81,24 @@ INSERT INTO specializations (species_id, vet_id) VALUES(
 );
 
 INSERT INTO specializations (species_id, vet_id) VALUES( 
+  (SELECT id FROM species WHERE name = 'Pokemon'),
+  (SELECT id FROM vets WHERE name = 'Stephaine Mendez')
+);
+
+INSERT INTO specializations (species_id, vet_id) VALUES( 
   (SELECT id FROM species WHERE name = 'Digimon'),
   (SELECT id FROM vets WHERE name = 'Jack Harkness')
 );
 
 
 /*Visits*/
+-- Agumon visited William Tatcher on May 24th, 2020.
+INSERT INTO visits (animal_id, vet_id, visit_date)
+VALUES(
+(SELECT id FROM animals WHERE name = 'Agumon'),
+(SELECT id FROM vets WHERE name = 'William Tatcher'),
+'24/04/2020');
+
 INSERT INTO visits (animal_id, vet_id, visit_date)
 VALUES(
 (SELECT id FROM animals WHERE name = 'Agumon'),
