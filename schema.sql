@@ -18,6 +18,8 @@ CREATE TABLE owners(
     age INT
 );
 
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
 /*Create Species table */
 CREATE TABLE species(
     id SERIAL PRIMARY KEY,
@@ -55,3 +57,8 @@ CREATE TABLE visits(
     vet_id INT REFERENCES vets(id) ON DELETE CASCADE,
     visit_date DATE
 );
+
+-- Performance Indexes
+CREATE INDEX animal_id_asc ON visits (animal_id ASC);
+CREATE INDEX owner_email_desc ON owners (email DESC);
+CREATE INDEX vet_id_asc ON visits(vet_id ASC);
